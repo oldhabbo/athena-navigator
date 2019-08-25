@@ -1,0 +1,28 @@
+syntax = "proto3";
+package navigator;
+
+// Partitioned by UserID
+service FavoriteFlats {
+  Send(FavoriteFlatsRequest) returns (FavoriteFlatsResponse) {} // GETFVRF, 18
+  Add(AddFavoriteRequest) returns (AddFavoriteResponse) {} // ADD_FAVORITE_ROOM, 19
+  Delete(DelFavoriteRequest) returns (DelFavoriteResponse) {} // DEL_FAVORITE_ROOM, 20
+}
+
+// Partitioned by ShardKey
+service Navigator {
+  rpc SearchBusyFlats(BusySearchRequest) returns (BusySearchResponse) {} // SBUSYF, 13
+  rpc SearchUserFlats(UserFlatSearchRequest) returns (UserFlatSearchResponse) {} // SUSERF, 16
+  rpc SearchFlats(SearchFlatRequest) returns (SearchFlatResponse) {} // SRCHF, 17
+  rpc SendFlatInfo(FlatInfoRequest) returns (FlatInfoResponse) {} // GETFLATINFO, 21
+  rpc DeleteFlat(DeleteFlatRequest) returns (DeleteFlatResponse) {} // DELETEFLAT, 23
+  rpc UpdateFlat(UpdateFlatRequest) returns (UpdateFlatResponse) {} // UPDATEFLAT, 24
+  rpc UpdateFlatInfo(UpdateFlatInfoRequest) returns (UpdateFlatInfoResponse) {} // SETFLATINFO, 25
+  rpc Navigate(NavigateRequest) returns (NavigateResponse) {} // NAVIGATE, 150
+  rpc SendFlatCategories(FlatCategoriesRequest) returns (FlatCategoriesResponse) {} // GETUSERFLATCATS, 151
+  rpc SendFlatCategory(FlatCategoryRequest) returns (FlatCategoryResponse) {} // GETFLATCAT, 152
+  rpc UpdateFlatCategory(UpdateCategoryRequest) returns (UpdateCategoryResponse) {} // SETFLATCAT, 153
+  rpc ListSpaceUsers(ListSpaceUsersRequest) returns (ListSpaceUsersResponse) {} // GETSPACENODEUSERS, 154
+  rpc RemoveAllRights(RemoveAllRightsRequest) returns (RemoveAllRightsResponse) {} // REMOVEALLRIGHTS, 155
+  rpc SendParentChain(ParentChainRequest) returns (ParentChainResponse) {} // GETPARENTCHAIN, 156
+  rpc SendRecommendedFlats(RecommendedFlatsRequest) returns (RecommendedFlatsResponse) {} // GET_RECOMMENDED_ROOMS, 264
+}
